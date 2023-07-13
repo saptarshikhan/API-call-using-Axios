@@ -1,24 +1,26 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
-
+import axios from 'axios';
+import navbar  from './components/navbar';
+import { useEffect, useState } from 'react';
 function App() {
+  const [todos,setTodos]=useState(null)
+  useEffect(()=>{
+    axios.get("https://jsonplaceholder.typicode.com/todos")
+    .then((result)=>{
+      console.log(result.data)
+      setTodos(result.data)
+      console.log(todos)
+
+    })
+  },[])
   return (
+    <>
+    <navbar/>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Example of API call using axios</h1>
     </div>
+    </>
   );
 }
 
