@@ -3,6 +3,8 @@ import './App.css';
 import axios from 'axios';
 import navbar  from './components/navbar';
 import { useEffect, useState } from 'react';
+import ToDoList from './components/TodoList';
+import Loading from './components/Loading';
 function App() {
   const [todos,setTodos]=useState(null)
   useEffect(()=>{
@@ -16,9 +18,9 @@ function App() {
   },[])
   return (
     <>
-    <navbar/>
-    <div className="App">
+    <div >
       <h1>Example of API call using axios</h1>
+      {todos? <ToDoList todos={todos}/>:<Loading/>}
     </div>
     </>
   );
